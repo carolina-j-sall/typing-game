@@ -1,3 +1,14 @@
+// functions
+function addWordToDOM () {
+  randomWord = words[Math.floor(Math.random() * words.length)];
+  word.textContent = randomWord;
+};
+
+function updateScore () {
+  score++;
+  scoreEl.textContent = score;
+};
+
 // Variables for the DOM elements
 const word = document.getElementById("word");
 const text = document.getElementById("text");
@@ -40,3 +51,17 @@ let score = 0;
 
 //Initializing time
 let time = 10;
+
+text.addEventListener("input", function (e) {
+  if (e.target.value === randomWord) {
+    updateScore();
+    addWordToDOM();
+    time += 5;
+    timeEl.textContent = `${time}s`;
+    this.value = "";
+  }
+})
+
+// calling functions to see output for testing
+addWordToDOM();
+// updateScore();
